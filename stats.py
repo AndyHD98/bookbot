@@ -8,10 +8,15 @@ def char_count(book_contents):
     book_contents = book_contents.lower()
     character_counts = {}
     for character in book_contents:
+        if not character.isalpha():
+            continue
         if character in character_counts:
-            character_counts[character] += 1
+                character_counts[character] += 1
         else:
-            character_counts[character] = 1
-            
-    for character, count in character_counts.items():
-        print(f"'{character}': {count}")
+                character_counts[character] = 1
+
+    sorted_counts = sorted(character_counts.items(), key=lambda item: item[1], reverse=True)
+
+    for character, count in sorted_counts:
+        print(f"{character}: {count}")
+
